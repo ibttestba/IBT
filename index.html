@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Workshop Registration</title>
+    <link rel="stylesheet" href="Data/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Gaming Workshop Registration</h1>
+            <p>December 15, 2025 - March 15, 2026</p>
+            <p>Daily Sessions: 9:00 AM - 8:00 PM (2-hour slots)</p>
+        </header>
+
+        <div class="navigation">
+            <a href="index.html" class="nav-btn active">Registration</a>
+            <a href="dashboard.html" class="nav-btn">Live Dashboard</a>
+            <a href="admin.html" class="nav-btn">Admin Panel</a>
+        </div>
+
+        <div class="registration-section">
+            <div class="date-selector">
+                <h2>Select Date</h2>
+                <input type="date" id="dateSelector" min="2025-12-15" max="2026-03-15">
+                <div class="workshop-info">
+                    <p><strong>Workshop Duration:</strong> 3 months</p>
+                    <p><strong>Daily Slots:</strong> 5 slots per day (2 hours each)</p>
+                    <p><strong>Total Capacity:</strong> 1,820 slots available (4 setups per slot)</p>
+                </div>
+            </div>
+
+            <div class="selected-date-info" id="selectedDateInfo" style="display: none;">
+                <h3>Available Slots for <span id="selectedDateDisplay"></span></h3>
+                <div class="slots-grid" id="slotsGrid">
+                    <!-- Slots will be generated dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Registration Modal -->
+        <div id="registrationModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>Register for Gaming Workshop</h3>
+                <div class="slot-details">
+                    <p><strong>Date:</strong> <span id="modalDate"></span></p>
+                    <p><strong>Time:</strong> <span id="modalTime"></span></p>
+                </div>
+
+                <!-- User Registration History Section -->
+                <div id="userRegistrationHistory"></div>
+
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <label for="userName">Full Name: <span class="required">*</span></label>
+                        <input type="text" id="userName" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userEmail">Email ID: <span class="required">*</span></label>
+                        <input type="email" id="userEmail" required placeholder="Enter your email address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userWWID">WWID: <span class="required">*</span></label>
+                        <input type="text" id="userWWID" required placeholder="Enter your WWID">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gamePreference">Preferred Game: <span class="required">*</span></label>
+                        <select id="gamePreference" required>
+                            <option value="">Select a game to test</option>
+                            <option value="Shadow of the Tomb Raider">Shadow of the Tomb Raider</option>
+                            <option value="Tiny Tina's Wonderland">Tiny Tina's Wonderland</option>
+                            <option value="Borderlands 3 (DX11)">Borderlands 3 (DX11)</option>
+                            <option value="Remnant II">Remnant II</option>
+                            <option value="Far Cry 6">Far Cry 6</option>
+                            <option value="Final Fantasy XIV: Dawntrail">Final Fantasy XIV: Dawntrail</option>
+                            <option value="Little Nightmares 3">Little Nightmares 3</option>
+                            <option value="Hogwarts Legacy">Hogwarts Legacy</option>
+                            <option value="Homeworld 3">Homeworld 3</option>
+                            <option value="Spider Man Remastered">Spider Man Remastered</option>
+                            <option value="Assassin's Creed Mirage">Assassin's Creed Mirage</option>
+                            <option value="Hitman 3">Hitman 3</option>
+                            <option value="Ori and the Will of the Wisps">Ori and the Will of the Wisps</option>
+                            <option value="Hollow Knight Silksong">Hollow Knight Silksong</option>
+                            <option value="Warframe">Warframe</option>
+                        </select>
+                        <small class="form-help">Choose the game you want to test during your session</small>
+                    </div>
+
+                    <div class="form-note">
+                        <p><strong>Note:</strong> Please arrive 15 minutes early for your gaming session setup.</p>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Register for Workshop</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="Data/Script.js"></script>
+</body>
+</html>

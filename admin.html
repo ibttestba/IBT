@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Workshop - Admin Panel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Admin Panel</h1>
+            <p>Gaming Workshop Management System</p>
+            <p>December 15, 2025 - March 15, 2026</p>
+        </header>
+
+        <div class="navigation">
+            <a href="index.html" class="nav-btn">Registration</a>
+            <a href="dashboard.html" class="nav-btn">Live Dashboard</a>
+            <a href="admin.html" class="nav-btn active">Admin Panel</a>
+        </div>
+
+        <div class="admin-section">
+            <div class="admin-overview">
+                <h2>Workshop Overview</h2>
+                <div class="overview-stats">
+                    <div class="overview-item">
+                        <span>Workshop Duration:</span>
+                        <span>91 Days</span>
+                    </div>
+                    <div class="overview-item">
+                        <span>Total Available Slots:</span>
+                        <span id="totalAvailableSlots">1820</span>
+                    </div>
+                    <div class="overview-item">
+                        <span>Days Remaining:</span>
+                        <span id="daysRemaining">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <h3>Total Registrations</h3>
+                    <div class="stat-number" id="totalRegistrations">0</div>
+                    <div class="stat-detail">Across all dates</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Available Slots</h3>
+                    <div class="stat-number" id="availableSlots">1820</div>
+                    <div class="stat-detail">Ready for booking</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Today's Sessions</h3>
+                    <div class="stat-number" id="todaySessions">0</div>
+                    <div class="stat-detail">Active today</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Completion Rate</h3>
+                    <div class="stat-number" id="completionRate">0%</div>
+                    <div class="stat-detail">Slots booked</div>
+                </div>
+            </div>
+
+            <div class="admin-filters">
+                <h3>Filter & Search</h3>
+                <div class="filter-controls">
+                    <input type="date" id="filterDate" min="2025-12-15" max="2026-03-15" placeholder="Filter by date">
+                    <select id="filterGame">
+                        <option value="">All Games</option>
+                        <option value="Shadow of the Tomb Raider">Shadow of the Tomb Raider</option>
+                        <option value="Tiny Tina's Wonderland">Tiny Tina's Wonderland</option>
+                        <option value="Borderlands 3 (DX11)">Borderlands 3 (DX11)</option>
+                        <option value="Remnant II">Remnant II</option>
+                        <option value="Far Cry 6">Far Cry 6</option>
+                        <option value="Final Fantasy XIV: Dawntrail">Final Fantasy XIV: Dawntrail</option>
+                        <option value="Little Nightmares 3">Little Nightmares 3</option>
+                        <option value="Hogwarts Legacy">Hogwarts Legacy</option>
+                        <option value="Homeworld 3">Homeworld 3</option>
+                        <option value="Spider Man Remastered">Spider Man Remastered</option>
+                        <option value="Assassin's Creed Mirage">Assassin's Creed Mirage</option>
+                        <option value="Hitman 3">Hitman 3</option>
+                        <option value="Ori and the Will of the Wisps">Ori and the Will of the Wisps</option>
+                        <option value="Hollow Knight Silksong">Hollow Knight Silksong</option>
+                        <option value="Warframe">Warframe</option>
+                    </select>
+                    <input type="text" id="searchUser" placeholder="Search by name, email, or WWID">
+                    <button id="applyFilters" class="admin-btn">Apply Filters</button>
+                    <button id="clearFilters" class="admin-btn">Clear</button>
+                </div>
+            </div>
+
+            <div class="admin-tables">
+                <h3>Registered Users</h3>
+                <div class="table-controls">
+                    <span id="tableInfo">Showing all registrations</span>
+                    <button id="exportUsers" class="admin-btn">Export Users</button>
+                </div>
+                <div class="table-container">
+                    <table id="usersTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>WWID</th>
+                                <th>Date</th>
+                                <th>Time Slot</th>
+                                <th>Preferred Game</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Session Analytics</h3>
+                <div class="table-controls">
+                    <span id="analyticsInfo">Session performance data</span>
+                    <button id="exportAnalytics" class="admin-btn">Export Analytics</button>
+                </div>
+                <div class="table-container">
+                    <table id="analyticsTable">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>WWID</th>
+                                <th>Date</th>
+                                <th>Time Slot</th>
+                                <th>Games Tested</th>
+                                <th>Duration</th>
+                                <th>Completion %</th>
+                                <th>Issues</th>
+                                <th>Notes</th>
+                                <th>Screenshots</th>
+                            </tr>
+                        </thead>
+                        <tbody id="analyticsTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Game Analytics Section -->
+            <div class="game-analytics-section">
+                <h3>Game-wise Analytics</h3>
+                <div class="game-selector-admin">
+                    <select id="gameAnalyticsSelector">
+                        <option value="">Select a game for detailed analysis</option>
+                        <option value="Shadow of the Tomb Raider">Shadow of the Tomb Raider</option>
+                        <option value="Tiny Tina's Wonderland">Tiny Tina's Wonderland</option>
+                        <option value="Borderlands 3 (DX11)">Borderlands 3 (DX11)</option>
+                        <option value="Remnant II">Remnant II</option>
+                        <option value="Far Cry 6">Far Cry 6</option>
+                        <option value="Final Fantasy XIV: Dawntrail">Final Fantasy XIV: Dawntrail</option>
+                        <option value="Little Nightmares 3">Little Nightmares 3</option>
+                        <option value="Hogwarts Legacy">Hogwarts Legacy</option>
+                        <option value="Homeworld 3">Homeworld 3</option>
+                        <option value="Spider Man Remastered">Spider Man Remastered</option>
+                        <option value="Assassin's Creed Mirage">Assassin's Creed Mirage</option>
+                        <option value="Hitman 3">Hitman 3</option>
+                        <option value="Ori and the Will of the Wisps">Ori and the Will of the Wisps</option>
+                        <option value="Hollow Knight Silksong">Hollow Knight Silksong</option>
+                        <option value="Warframe">Warframe</option>
+                    </select>
+                    <button id="loadGameAnalytics" class="admin-btn">Load Game Analytics</button>
+                </div>
+
+                <!-- Game Overview Stats -->
+                <div class="game-overview-stats" id="gameOverviewStats" style="display: none;">
+                    <div class="game-stats-grid">
+                        <div class="game-stat-card">
+                            <h4>Total Players</h4>
+                            <div class="game-stat-number" id="totalGamePlayers">0</div>
+                        </div>
+                        <div class="game-stat-card">
+                            <h4>Total Hours Played</h4>
+                            <div class="game-stat-number" id="totalGameHours">0</div>
+                        </div>
+                        <div class="game-stat-card">
+                            <h4>Total Crashes</h4>
+                            <div class="game-stat-number" id="totalGameCrashes">0</div>
+                        </div>
+                        <div class="game-stat-card">
+                            <h4>Avg Completion %</h4>
+                            <div class="game-stat-number" id="avgGameCompletion">0%</div>
+                        </div>
+                        <div class="game-stat-card">
+                            <h4>Total Screenshots</h4>
+                            <div class="game-stat-number" id="totalGameScreenshots">0</div>
+                        </div>
+                        <div class="game-stat-card">
+                            <h4>Avg Session Time</h4>
+                            <div class="game-stat-number" id="avgGameSessionTime">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed Player Analysis -->
+                <div class="game-player-analysis" id="gamePlayerAnalysis" style="display: none;">
+                    <h4>Player-wise Analysis for <span id="selectedGameName"></span></h4>
+                    <div class="table-controls">
+                        <span id="gameTableInfo">Player analysis data</span>
+                        <button id="exportGameData" class="admin-btn">Export Game Data</button>
+                    </div>
+                    <div class="table-container">
+                        <table id="gamePlayersTable">
+                            <thead>
+                                <tr>
+                                    <th>Player Name</th>
+                                    <th>WWID</th>
+                                    <th>Session Date</th>
+                                    <th>Play Time</th>
+                                    <th>Completion %</th>
+                                    <th>Crashes</th>
+                                    <th>Screenshots</th>
+                                    <th>Notes</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="gamePlayersTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-controls">
+                <div class="control-section">
+                    <h4>Data Management</h4>
+                    <button id="exportAllData" class="admin-btn">Export All Data</button>
+                    <button id="importData" class="admin-btn">Import Data</button>
+                    <input type="file" id="importFile" accept=".json" style="display: none;">
+                </div>
+                <div class="control-section">
+                    <h4>System Controls</h4>
+                    <button id="resetTodaySlots" class="admin-btn">Reset Today's Slots</button>
+                    <button id="clearOldSessions" class="admin-btn">Clear Old Sessions</button>
+                    <button id="clearAllData" class="admin-btn danger">Clear All Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
